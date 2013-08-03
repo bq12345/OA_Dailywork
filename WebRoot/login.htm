@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>办公业务资源系统 登录</title>
+<script language="javascript">
+document.onkeydown=function()              //网页内按下回车触发
+{
+        if(event.keyCode==13)
+        {
+                document.loginform.submit();
+                return false;
+        }
+}
+  </script>
+</head>
+
+<script language="javascript">
+	function submitButtonClicked()
+	{
+		if(document.form.id.value=="")
+		{
+			alert("账号不能为空");
+			document.form.id.focus();
+			return false;
+		}
+		if(document.form.psw.value.length<6)
+		{
+			alert("密码最少为6位");
+			document.form.psw.focus();
+			return false;
+		}
+	}
+</script>
+<body onselectstart="return false" background="images/bg_login.png">
+	<table align="center" width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td valign="middle">
+            	<table background="images/login_main.png" width="800" height="488" border="0" align="center" cellpadding="0" cellspacing="0">
+           	  <tr align="center">
+                    	<td valign="top">&nbsp;
+                        	
+                        </td>
+                  </tr>
+            		<tr align="center">
+        				<td height="60" valign="bottom"><div align="center">
+        				  <h1><strong>办公业务资源系统</strong></h1>
+        				</div></td>
+       			    </tr>
+        			<tr>
+                    <td>
+                     <form name="loginform" action="login" method="post">	
+<table width="100%" height="90" cellpadding="0" border="0" cellspacing="0">
+                            	<tr height="90">
+                                	<td width="46%">&nbsp; 
+                                	  
+                              	  </td>
+                   	     <td width="30%"> 
+                           	 <table>
+                                 <tr>
+                                   	 <td width="48" align="center" valign="middle">账号：</td>
+                                     <td width="174">
+                                       	 <input name="id" type="text" class=inuptCN width="136" height="30" maxlength="20"/>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                   	 <td align="center" valign="middle">密码：</td>
+                                     <td>
+                                       	 <input name="password" type="password" class=inuptCN width="136" height="30" maxlength="20"/>
+                                     </td>
+                                                
+                                 </tr>
+                                 </table>
+                                 <table width="235">
+                                 <tr height="30">
+                                   	 <td width="70"> </td>
+                                     <td width="73">
+                                       	 <input width="68" height="26" type="image" src="images/zhuceButton.png" align="absmiddle" border="0" onclick="window.open('register.jsp');return false;" /> 
+                                     </td>
+                                     <td width="104">
+                                       	 <input width="68" height="26" type="image" src="images/chongzhiButton.png" align="absmiddle" border="0" onclick="javascript:document.loginform.reset();return false;" /> 
+                                     </td>
+                                                
+                                 </tr>
+                             </table>	
+                   		   </td>
+                      				<td width="9%"> 
+                                   
+                                    	<table width="66" height="99">
+                                        	<tr>
+                                            	<td width="88" height="60">
+                                                	<input width="60" height="60" type="image" src="images/dengluButton.png" align="absmiddle" border="0" onclick="javascript:document.loginform.submit();" /> 	
+                                                </td>
+                                            	
+                                            </tr>
+                                            
+                                            <tr>
+                                            	<td width="88" height="30">
+                                                </td>
+                                          </tr>
+
+                                            
+                                      </table>
+                                    
+                                    </td>
+                                    <td width="15%">&nbsp;
+                                       
+                 					</td>
+        						</tr>
+                          </table>
+                      </form>
+                    </td>
+                    </tr>
+                    <tr>
+        				<td>
+            				
+            			</td>
+        			</tr>
+            </table>
+            </td>
+        </tr>	
+    </table>
+</body>
+</html>

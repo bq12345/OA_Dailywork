@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="GB2312" />
+	<package name="default" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="configdebug"
+				class="com.configdebug.interceptor.ConfigDebugInterceptor" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="configdebug" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack" />
+
+		<default-action-ref name="index" />
+
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+
+		<action name="index">
+			<result>/login.htm</result>
+		</action>
+
+		<action name="query" class="com.oa.action.ClientAction" method="queryClient">
+			<result name="success">/dailywork/address_list.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="queryTeam" class="com.oa.action.TeamAction"
+			method="queryTeam">
+			<result name="success">/dailywork/address_list_group.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="showAddressList" class="com.oa.action.TeamAction"
+			method="queryTeam">
+			<result name="success">/dailywork/address_left.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="changeClient" class="com.oa.action.ClientAction"
+			method="updateClient">
+			<result name="success">/common/success.htm</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="getClient" class="com.oa.action.ClientAction"
+			method="changeClient">
+			<result name="success">/dailywork/address_modify.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="getTeam" class="com.oa.action.TeamAction" method="changeTeam">
+			<result name="success">/dailywork/address_modify_group.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="delTeam" class="com.oa.action.TeamAction" method="delTeam">
+			<result name="success">/common/success.htm</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="changeTeam" class="com.oa.action.TeamAction"
+			method="updateTeam">
+			<result name="success">/common/success.htm</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="addTeam" class="com.oa.action.TeamAction" method="addTeam">
+			<result name="success">/common/success.htm</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="queryClient" class="com.oa.action.ClientAction"
+			method="queryByName">
+			<result name="success">/dailywork/address_list.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="queryClientById" class="com.oa.action.ClientAction"
+			method="queryById">
+			<result name="success">/dailywork/address_list.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+
+		<!-- 以上是单位通讯录模块 -->
+		<!-- 以下公共名片夹 -->
+
+		<action name="query_callingcard_list" class="com.oa.action.CardClientAction" method="queryCardClient">
+			<result name="success">/dailywork/callingcard_list.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="AddCardTeam" class="com.oa.action.CardTeamAction" method="addCardTeam">
+			<result name="success">/dailywork/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="query_callingcard_team" class="com.oa.action.CardTeamAction" method="queryCardTeam">
+			<result name="success">dailywork/callingcard_list_group.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="getCardTeam" class="com.oa.action.CardTeamAction" method="changeCardTeam">
+			<result name="success">dailywork/callingcard_modify_group.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="changeCardTeam" class="com.oa.action.CardTeamAction" method="updateCardTeam">
+			<result name="success">/dailywork/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="delCardTeam" class="com.oa.action.CardTeamAction" method="delCardTeam">
+			<result name="success">/dailywork/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="callingcard_add" class="com.oa.action.CardTeamAction" method="queryCardTeam">
+			<result name="success">/dailywork/callingcard_add.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+ 
+		<action name="addCardClientDo" class="com.oa.action.CardClientAction" method="addCardClient">
+			<result name="success">/dailywork/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="getCardClient" class="com.oa.action.CardClientAction" method="changeCardClient">
+			<result name="success">/dailywork/callingcard_modify.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="delCardClient" class="com.oa.action.CardClientAction" method="delCardClient">
+			<result name="success">/dailywork/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="changeCardClient" class="com.oa.action.CardClientAction" method="updateCardClient">
+			<result name="success">/dailywork/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="queryCardClient" class="com.oa.action.CardClientAction"
+			method="queryByName">
+			<result name="success">/dailywork/callingcard_list.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<!-- 以上是公共名片夹部分 -->
+		<!-- 以下是个人名片夹的地方 -->
+		
+		
+		<action name="query_callingcard_list_owner" class="com.oa.action.CardClientOwnerAction" method="queryCardClientOwner">
+			<result name="success">/dailywork/callingcard_list_owner.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="AddCardTeamOwner" class="com.oa.action.CardTeamOwnerAction" method="addCardTeamOwner">
+			<result name="success">/dailywork/success_owner.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="query_callingcard_team_owner" class="com.oa.action.CardTeamOwnerAction" method="queryCardTeamOwner">
+			<result name="success">dailywork/callingcard_list_group_owner.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="getCardTeamOwner" class="com.oa.action.CardTeamOwnerAction" method="changeCardTeamOwner">
+			<result name="success">dailywork/callingcard_modify_group_owner.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="changeCardTeamOwner" class="com.oa.action.CardTeamOwnerAction" method="updateCardTeamOwner">
+			<result name="success">/dailywork/success_owner.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="delCardTeamOwner" class="com.oa.action.CardTeamOwnerAction" method="delCardTeamOwner">
+			<result name="success">/dailywork/success_owner.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="callingcard_add_owner" class="com.oa.action.CardTeamOwnerAction" method="queryCardTeamOwner">
+			<result name="success">/dailywork/callingcard_add_owner.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+ 
+		<action name="addCardClientOwnerDo" class="com.oa.action.CardClientOwnerAction" method="addCardClientOwner">
+			<result name="success">/dailywork/success_owner.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="getCardClientOwner" class="com.oa.action.CardClientOwnerAction" method="changeCardClientOwner">
+			<result name="success">/dailywork/callingcard_modify_owner.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="delCardClientOwner" class="com.oa.action.CardClientOwnerAction" method="delCardClientOwner">
+			<result name="success">/dailywork/success_owner.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="changeCardClientOwner" class="com.oa.action.CardClientOwnerAction" method="updateCardClientOwner">
+			<result name="success">/dailywork/success_owner.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="queryCardClientOwner" class="com.oa.action.CardClientOwnerAction"
+			method="queryByName">
+			<result name="success">/dailywork/callingcard_list_owner.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<!-- 以上是个人名片夹模块 -->
+		<!-- 以下是日程管理 -->
+		<action name="queryDailywork" class="com.oa.action.DailyworkAction" method="queryDailywork">
+			<result name="success">/dailywork/dailywork_list.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="viewDailywork" class="com.oa.action.DailyworkAction"
+			method="changeDailywork">
+			<result name="success">/dailywork/dailywork_view.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="getDailywork" class="com.oa.action.DailyworkAction"
+			method="changeDailywork">
+			<result name="success">/dailywork/dailywork_modify.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="changeDailywork" class="com.oa.action.DailyworkAction"
+			method="updateDailywork">
+			<result name="success">/dailywork/success_dailywork.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="addDailywork" class="com.oa.action.DailyworkAction"
+			method="addDailywork">
+			<result name="success" type="redirectAction">queryDailywork</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="delDailywork" class="com.oa.action.DailyworkAction"
+			method="delDailywork">
+			<result name="success">/dailywork/success_dailywork.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="queryDailyworkStandard" class="com.oa.action.DailyworkAction" method="queryDailyworkStandard">
+			<result name="success">/dailywork/dailywork_list_template.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="copyDailywork" class="com.oa.action.DailyworkAction" method="changeDailywork">
+			<result name="success">/dailywork/dailywork_add.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<!-- 以上是日程管理 -->
+		<!-- 以下是公告栏部分 -->
+
+		<action name="addNotice" class="com.oa.action.NoticeAction" method="addNotice">
+
+			<result name="success">/dailywork/success.jsp</result>
+			<result name="input">/dailywork/notice_add.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="queryNotice" class="com.oa.action.NoticeAction" method="queryNotice">
+
+			<result name="success">/dailywork/notice_list.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="getNotice" class="com.oa.action.NoticeAction" method="changeNotice">
+
+			<result name="success">/dailywork/notice_modify.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="delNotice" class="com.oa.action.NoticeAction" method="delNotice">
+
+			<result name="success">/dailywork/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="changeNotice" class="com.oa.action.NoticeAction" method="updateNotice">
+
+			<result name="success">/dailywork/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="viewNotice" class="com.oa.action.NoticeAction" method="changeNotice">
+
+			<result name="success">/dailywork/notice_view.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="download" class="com.oa.action.DownloadAction">
+
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="bufferSize">4096</param>
+				<param name="contentDisposition">attachment;filename=${downFileName}</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<!-- 已上为公告栏模块 -->
+		<!-- 计划管理模块开始 -->
+		<action name="queryPlan" class="com.oa.action.PlanAction" method="queryPlan">
+			<result name="success">/dailywork/plan_list.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="addPlan" class="com.oa.action.PlanAction" method="addPlan">
+			<result name="success" type="redirectAction">queryPlan</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="viewPlan" class="com.oa.action.PlanAction" method="changePlan">
+			<result name="success">/dailywork/plan_detail.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="getPlan" class="com.oa.action.PlanAction" method="changePlan">
+			<result name="success">/dailywork/plan_modify.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="updatePlan" class="com.oa.action.PlanAction" method="updatePlan">
+			<result name="success">/dailywork/success_plan.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="delPlan" class="com.oa.action.PlanAction" method="delPlan">
+			<result name="success">/dailywork/success_plan.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		
+		<action name="decomposePlan" class="com.oa.action.PlanAction" method="changePlan">
+			<result name="success">/dailywork/plan_separate.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="separatePlan" class="com.oa.action.PlanAction" method="separatePlan">
+			<result name="success">/dailywork/success_plan.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		
+		<!-- 计划管理模块结束 -->
+		
+		
+		<!-- 政策法规开始 -->
+		
+		<action name="beforePolicy" class="com.oa.action.TypeAction" method="queryType">
+			<result name="success">/dailywork/policy_add.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="addPolicy" class="com.oa.action.PolicyAction" method="addPolicy">
+			<result name="success">/dailywork/success_policy.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="queryPolicy" class="com.oa.action.PolicyAction" method="queryPolicy">
+			<result name="success">/dailywork/policy_list.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="queryType" class="com.oa.action.TypeAction"
+			method="queryType">
+			<result name="success">/dailywork/policytype_list.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="getPolicy" class="com.oa.action.PolicyAction"
+			method="changePolicy">
+			<result name="success">/dailywork/policy_modify.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="changePolicy" class="com.oa.action.PolicyAction"
+			method="updatePolicy">
+			<result name="success">/dailywork/success_policy.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="getType" class="com.oa.action.TypeAction" method="changeType">
+			<result name="success">/dailywork/policytype_modify.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="delType" class="com.oa.action.TypeAction" method="delType">
+			<result name="success">/dailywork/success_policy.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="changeType" class="com.oa.action.TypeAction"
+			method="updateType">
+			<result name="success">/dailywork/success_policy.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="addType" class="com.oa.action.TypeAction" method="addType">
+			<result name="success">/dailywork/success_policy.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="getFile" class="com.oa.action.PolicyAction" method="changePolicy">
+			<result name="success" >/dailywork/policy_download.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="downloadPolicy" class="com.oa.action.DownloadPolicy">
+
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="bufferSize">4096</param>
+				<param name="contentDisposition">attachment;filename=${downFileName}</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<!-- 政策法规模块结束 -->
+		
+		<!-- 登录及个人信息开始 -->
+		
+		<action name="login" class="com.oa.action.LoginAction">
+			<result name="success" >/index.html</result>
+			<result name="input">/login.htm</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="getUser" class="com.oa.action.LoginAction" method="changeUser">
+			<result name="success" >/dailywork/personal_manage.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="updateUser" class="com.oa.action.LoginAction" method="updateUser">
+			<result name="success" >/index.html</result>
+			<result name="input">/dailywork/personal_manage.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="register" class="com.oa.action.LoginAction" method="addUser">
+			<result name="success" >/register_success.jsp</result>
+			<result name="input">/register.htm</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<!-- 登录及个人信息结束 -->
+	</package>
+</struts>    

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping 
+	package="com.oa.model">
+
+	<class name="com.oa.model.Client" table="client">
+		<id name="id">
+			<generator class="increment"/>
+		</id>
+		<property name="client_name"/>
+		<property name="officephone"/>
+		<property name="mobilephone"/>
+		<property name="homephone"/>
+		<property name="other"/>
+		<property name="email"/>
+		<property name="remark"/>
+		<property name="team_id"/>
+	</class>
+</hibernate-mapping>

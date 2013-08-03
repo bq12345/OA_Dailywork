@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping 
+	package="com.oa.model">
+
+	<class name="com.oa.model.Plan" table="plan">
+		<id name="id">
+			<generator class="increment"/>
+		</id>
+		<property name="name"></property>
+		<property name="start_date"/>
+		<property name="end_date"/>
+		<property name="children"/>
+		<property name="parent"/>
+		<property name="person"/>
+		<property name="data"/>
+	</class>
+</hibernate-mapping>

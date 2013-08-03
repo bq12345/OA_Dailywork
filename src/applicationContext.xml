@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="myDataSource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/oa/model/Client.hbm.xml</value>
+				<value>com/oa/model/Team.hbm.xml</value>
+				<value>com/oa/model/CardTeam.hbm.xml</value>
+				<value>com/oa/model/CardClient.hbm.xml</value>
+				<value>com/oa/model/CardTeamOwner.hbm.xml</value>
+				<value>com/oa/model/CardClientOwner.hbm.xml</value>
+				<value>com/oa/model/Dailywork.hbm.xml</value>
+				<value>com/oa/model/Notice.hbm.xml</value>
+				<value>com/oa/model/Policy.hbm.xml</value>
+				<value>com/oa/model/Type.hbm.xml</value>
+				<value>com/oa/model/User.hbm.xml</value>
+				<value>com/oa/model/Plan.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		
+	</bean>
+	
+	<bean id="myDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://127.0.0.1:3306/oa?useUnicode=true&amp;characterEncoding=UTF-8">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
+	</bean>
+	
+	<bean id="clientDao" class="com.oa.dao.ClientDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="clientservice" class="com.oa.service.ClientService">
+		<property name="clientDAO">
+			<ref bean="clientDao" />
+		</property>
+	</bean>
+	<bean id="teamDao" class="com.oa.dao.TeamDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="teamservice" class="com.oa.service.TeamService">
+		<property name="teamDAO">
+			<ref bean="teamDao" />
+		</property>
+	</bean>
+	<!-- 公共名片夹部分开始 -->
+	<bean id="cardClientDao" class="com.oa.dao.CardClientDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="cardclientservice" class="com.oa.service.CardClientService">
+		<property name="clientDAO">
+			<ref bean="cardClientDao" />
+		</property>
+	</bean>
+	<bean id="cardTeamDao" class="com.oa.dao.CardTeamDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="cardteamservice" class="com.oa.service.CardTeamService">
+		<property name="teamDAO">
+			<ref bean="cardTeamDao" />
+		</property>
+	</bean>
+	
+	<!-- 公共名片夹部分结束 -->
+	<!-- 私人名片夹部分开始 -->
+	
+	<bean id="cardClientOwnerDao" class="com.oa.dao.CardClientOwnerDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="cardclientownerservice" class="com.oa.service.CardClientOwnerService">
+		<property name="cardclientownerDAO">
+			<ref bean="cardClientOwnerDao" />
+		</property>
+	</bean>
+	<bean id="cardTeamOwnerDao" class="com.oa.dao.CardTeamOwnerDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="cardteamownerservice" class="com.oa.service.CardTeamOwnerService">
+		<property name="cardteamownerDAO">
+			<ref bean="cardTeamOwnerDao" />
+		</property>
+	</bean>
+	
+	
+	<!-- 私人名片夹部分结束 -->
+	
+	<!-- 日程管理開始 -->
+	
+	<bean id="dailyworkDAO" class="com.oa.dao.DailyworkDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="dailyworkservice" class="com.oa.service.DailyworkService">
+		<property name="dailyworkDAO">
+			<ref bean="dailyworkDAO" />
+		</property>
+	</bean>
+	
+	
+	<!-- 日程管理结束 -->
+	
+	
+	<!-- 计划管理开始 -->
+	<bean id="planDAO" class="com.oa.dao.PlanDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="planservice" class="com.oa.service.PlanService">
+		<property name="planDAO">
+			<ref bean="planDAO" />
+		</property>
+	</bean>
+	
+	<!-- 计划管理结束 -->
+	<!-- 公告栏模块开始 -->
+	<bean id="noticeDAO" class="com.oa.dao.NoticeDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="noticeservice" class="com.oa.service.NoticeService">
+		<property name="noticeDAO">
+			<ref bean="noticeDAO" />
+		</property>
+	</bean>
+	<!-- 公告栏模块结束 -->
+	<!-- 政策法规开始 -->
+	<bean id="policyDAO" class="com.oa.dao.PolicyDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="policyservice" class="com.oa.service.PolicyService">
+		<property name="policyDAO">
+			<ref bean="policyDAO" />
+		</property>
+	</bean>
+	
+	<bean id="typeDAO" class="com.oa.dao.TypeDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="typeservice" class="com.oa.service.TypeService">
+		<property name="typeDAO">
+			<ref bean="typeDAO" />
+		</property>
+	</bean>
+	<!-- 政策法规结束 -->
+	<!-- 个人信息开始 -->
+	<bean id="userDAO" class="com.oa.dao.UserDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="userservice" class="com.oa.service.UserService">
+		<property name="userDAO">
+			<ref bean="userDAO" />
+		</property>
+	</bean>
+	<!-- 个人信息结束 -->
+	
+	</beans>
